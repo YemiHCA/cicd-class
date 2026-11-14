@@ -1,8 +1,21 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
 pipeline{
     agent any 
     environment{
-        DOCKERHUB_USERNAME = "tech365"
-        IMAGE_NAME = "${DOCKERHUB_USERNAME}/nodejs-cicd-app2"
+        DOCKERHUB_USERNAME = "yemmie69"
+        IMAGE_NAME = "${DOCKERHUB_USERNAME}/nodejs-cicd-app"
         APP_PORT = "3000"
         CONTAINER_NAME = "nodejs-apps"
     }
@@ -21,11 +34,11 @@ pipeline{
 
          stage("Build docker image"){
             steps{
-                sh """
+                sh "
                 docker build \
                 -t ${IMAGE_NAME}:${BUILD_NUMBER} \
                 -t ${IMAGE_NAME}:latest .
-                """
+                "
             }
         }
         stage("Push to docker hub"){
